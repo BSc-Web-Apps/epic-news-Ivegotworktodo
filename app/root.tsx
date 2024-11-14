@@ -44,7 +44,10 @@ export default function App() {
 				<div className="container flex justify-between pb-5">
 					<ThemeSwitch userPreference={data.requestInfo.userPrefs.theme} />
 				</div>
-				<FooterMenuRight />
+				<FooterMenuRight
+					companyName="Jersey Morning News"
+					altText="Jersey Morning News Logo"
+				/>
 			</div>
 		</Document>
 	)

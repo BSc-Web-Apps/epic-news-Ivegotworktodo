@@ -1,4 +1,5 @@
 import { useMatches } from '@remix-run/react'
+import logo from '~/assets/png/logo.png'
 import { SearchBar } from '../molecules/SearchBar'
 import LoginOrUserDropdown from './LoginOrUserDropdown'
 
@@ -8,8 +9,11 @@ export default function HeaderWithSearch() {
 	const searchBar = isOnSearchPage ? null : <SearchBar status="idle" />
 
 	return (
-		<header className="bg-primary/10 py-6 dark:bg-dark-primary/10">
+		<header className="dark:bg-dark-primary/10 bg-primary/10 py-6">
 			<nav className="container flex flex-wrap items-center justify-between gap-4 sm:flex-nowrap md:gap-8">
+				<div className="flex flex-row rounded-full bg-green-200 p-6">
+					<img src={logo} alt="Jersey Morning News Logo" className="w-20" />
+				</div>
 				<div className="ml-auto hidden max-w-sm flex-1 sm:block">
 					{searchBar}
 				</div>
