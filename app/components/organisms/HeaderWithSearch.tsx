@@ -14,12 +14,27 @@ export default function HeaderWithSearch() {
 				<div>
 					<NavLogo />
 				</div>
-				<div>
+				<div className="flex flex-1 gap-8">
 					<Link
 						to="/news"
+						prefetch="intent"
 						className="text-sm font-semibold text-muted-foreground transition hover:text-foreground"
 					>
 						News
+					</Link>
+					<Link
+						to="/about-us"
+						prefetch="intent"
+						className="text-sm font-semibold text-muted-foreground transition hover:text-foreground"
+					>
+						About Us
+					</Link>
+					<Link
+						to="/contact-us"
+						prefetch="intent"
+						className="text-sm font-semibold text-muted-foreground transition hover:text-foreground"
+					>
+						Contact Us
 					</Link>
 				</div>
 				<div className="ml-auto hidden max-w-sm flex-1 sm:block">
