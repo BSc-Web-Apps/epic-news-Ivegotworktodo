@@ -10,6 +10,7 @@ export default function Index() {
 	return (
 		<main className="container grid h-full place-items-center">
 			<h1 className="px-60 text-center text-mega text-red-400">Welcome!</h1>
+			<h2 className="text-4xl">News Categories</h2>
 			<div className="w-full py-16">
 				<HeroCallToAction
 					image={heroImage}
