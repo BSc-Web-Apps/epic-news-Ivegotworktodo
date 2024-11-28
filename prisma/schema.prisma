@@ -83,6 +83,7 @@ model Article {
 
   // non-unique foreign key
   @@index([ownerId])
+  @@index([categoryId])
   // This helps our order by in the user search a LOT
   @@index([ownerId, updatedAt])
 }
