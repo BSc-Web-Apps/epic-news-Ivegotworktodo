@@ -1,6 +1,7 @@
 import { invariant } from '@epic-web/invariant'
 import { type LoaderFunctionArgs, json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
+import ArticleCard from '~/components/organisms/ArticleCard.tsx'
 import { prisma } from '~/utils/db.server.ts'
 import { toTitleCase } from '~/utils/stringUtils.ts'
 
@@ -10,7 +11,12 @@ export async function loader({ params }: LoaderFunctionArgs) {
 	invariant(typeof category === 'string', 'Category not found')
 	const categoryTitle = toTitleCase(category)
 
-	const allArticles = await prisma.article.findMany({
+	const filteredArticles = await prisma.article.findMany({
+		where: {
+			category: {
+				slug: category, // Retrieves only articles in the specified category
+			},
+		},
 		select: {
 			id: true,
 			title: true,
@@ -19,22 +25,27 @@ export async function loader({ params }: LoaderFunctionArgs) {
 		},
 	})
 
-	return json({ categoryTitle, allArticles })
+	return json({ categoryTitle, filteredArticles })
 }
 
 export default function NewsCategoryPage() {
-	const { categoryTitle, allArticles } = useLoaderData<typeof loader>()
+	const { category, filteredArticles } = useLoaderData<typeof loader>()
 
 	return (
-		<div className="container py-16">
-			<h2 className="text-h2">{categoryTitle}</h2>
-			<div className="grid grid-cols-5 gap-6 pt-7">
-				{allArticles.map(article => (
-					<div className="bg-pink-700 p-4" key={article.id}>
-						<h3>{article.title}</h3>
-						<p>{article.category?.name || 'General News'}</p>
-					</div>
-				))}
+		<div className="container py-8 lg:py-16">
+			<h2 className="mb-16 text-h2">{category}</h2>
+
+			<div className="grid grid-cols-1 gap-6 md:grid-cols-4 xl:grid-cols-3">
+				{filteredArticles.map(article => {
+					return (
+						<ArticleCard
+							key={article.id}
+							title={article.title}
+							categoryTitle={categoryTitle}
+							imageId={article.images[0]?.id}
+						/>
+					)
+				})}
 			</div>
 		</div>
 	)

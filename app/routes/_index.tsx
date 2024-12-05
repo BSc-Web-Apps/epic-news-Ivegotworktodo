@@ -1,12 +1,29 @@
 import { type MetaFunction } from '@remix-run/node'
-import { Link } from '@remix-run/react'
+import { json, Link, useLoaderData } from '@remix-run/react'
 import { Button } from '#app/components/atoms/Button.tsx'
 import HeroCallToAction from '#app/components/organisms/Hero/HeroCallToAction.tsx'
 import heroImage from '~/assets/jpg/sample-hero.jpg'
+import ArticleCard from '~/components/organisms/ArticleCard.tsx'
+import { prisma } from '~/utils/db.server.ts'
 
 export const meta: MetaFunction = () => [{ title: 'Epic News' }]
 
+export async function loader() {
+	const allArticles = await prisma.article.findMany({
+		select: {
+			id: true,
+			title: true,
+			category: { select: { name: true } },
+			images: { select: { id: true } },
+		},
+	})
+
+	return json({ allArticles })
+}
+
 export default function Index() {
+	const { allArticles } = useLoaderData<typeof loader>()
+
 	return (
 		<main className="container grid h-full place-items-center">
 			<h1 className="px-60 text-center text-mega text-red-400">Welcome!</h1>
@@ -29,15 +46,24 @@ export default function Index() {
 						</Button>
 					</div>
 				</HeroCallToAction>
-			</div>
-			<p className="text-5xl">This is a great website</p>
-			<button className="transition=all h-1/2 w-1/3 rounded bg-blue-500 px-4 py-2 font-bold duration-500 hover:bg-red-700 hover:text-6xl md:text-lg lg:text-xl">
-				Goodbye!
-			</button>
-			<div className="w-1/2">
-				<section className="relative h-1/6 border-8 border-yellow-500"></section>
-				<section className="relative h-1/6 border-8 border-green-500"></section>
-				<section className="relative h-1/6 border-8 border-amber-500"></section>
+				<div className="container py-16">
+					<h2 className="mb-8 text-h2 font-normal">Latest news</h2>
+
+					<div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
+						{allArticles.length > 0 ? (
+							allArticles.map(article => (
+								<ArticleCard
+									key={article.id}
+									title={article.title}
+									category={article.category?.name}
+									imageId={article.images[0]?.id}
+								/>
+							))
+						) : (
+							<p>No articles found</p>
+						)}
+					</div>
+				</div>
 			</div>
 		</main>
 	)
