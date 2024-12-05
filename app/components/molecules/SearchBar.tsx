@@ -44,7 +44,7 @@ export function SearchBar({
 					id={id}
 					defaultValue={searchParams.get('search') ?? ''}
 					placeholder="Search"
-					className="w-full"
+					className="h-14 w-full"
 					autoFocus={autoFocus}
 				/>
 			</div>
