@@ -10,7 +10,7 @@ export default function NewsPage() {
 						to="technology"
 						prefetch="intent"
 						className={({ isActive }) =>
-							`${isActive ? 'text-blue-300 underline underline-offset-8' : 'text-blue-500'}`
+							`${isActive ? 'text-red-300 underline underline-offset-8' : 'text-red-500'}`
 						}
 					>
 						Technology
@@ -19,7 +19,7 @@ export default function NewsPage() {
 						to="entertainment"
 						prefetch="intent"
 						className={({ isActive }) =>
-							`${isActive ? 'text-blue-300 underline underline-offset-8' : 'text-blue-500'}`
+							`${isActive ? 'text-green-300 underline underline-offset-8' : 'text-green-500'}`
 						}
 					>
 						Enterntainment
