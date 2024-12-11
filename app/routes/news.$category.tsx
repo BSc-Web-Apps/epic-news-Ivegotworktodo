@@ -40,6 +40,7 @@ export default function NewsCategoryPage() {
 					return (
 						<ArticleCard
 							key={article.id}
+							articleId={article.id}
 							title={article.title}
 							categoryTitle={categoryTitle}
 							imageId={article.images[0]?.id}
