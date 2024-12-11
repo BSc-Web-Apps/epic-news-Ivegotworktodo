@@ -44,11 +44,6 @@ export default function App() {
 								<button className="transition=all h-1/2 w-1/3 rounded bg-blue-500 px-4 py-2 font-bold duration-500 hover:bg-red-700 hover:text-6xl md:text-lg lg:text-xl">
 									Goodbye!
 								</button>
-								<div className="w-1/2">
-									<section className="relative h-1/6 border-8 border-yellow-500"></section>
-									<section className="relative h-1/6 border-8 border-green-500"></section>
-									<section className="relative h-1/6 border-8 border-amber-500"></section>
-								</div>
 							</main>
 						</div>
 						<FooterMenuRight
