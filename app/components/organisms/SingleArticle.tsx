@@ -72,7 +72,7 @@ export default function SingleArticle({ article }: SingleArticleProps) {
 						By: {article.owner.name}
 					</span>
 				</div>
-				<div className="whitespace-break-spaces pt-16 text-xl leading-loose text-yellow-700">
+				<div className="whitespace-break-spaces pt-16 text-xl leading-loose text-zinc-600">
 					{article.content}
 				</div>
 			</div>

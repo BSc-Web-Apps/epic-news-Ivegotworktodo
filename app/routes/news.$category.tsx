@@ -14,7 +14,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 	const filteredArticles = await prisma.article.findMany({
 		where: {
 			category: {
-				slug: category, // Retrieves only articles in the specified category
+				slug: category,
 			},
 		},
 		select: {
@@ -29,11 +29,11 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 export default function NewsCategoryPage() {
-	const { category, filteredArticles } = useLoaderData<typeof loader>()
+	const { categoryTitle, filteredArticles } = useLoaderData<typeof loader>()
 
 	return (
 		<div className="container py-8 lg:py-16">
-			<h2 className="mb-16 text-h2">{category}</h2>
+			<h2 className="mb-16 text-h2">{categoryTitle}</h2>
 
 			<div className="grid grid-cols-1 gap-6 md:grid-cols-4 xl:grid-cols-3">
 				{filteredArticles.map(article => {
@@ -42,7 +42,7 @@ export default function NewsCategoryPage() {
 							key={article.id}
 							articleId={article.id}
 							title={article.title}
-							categoryTitle={categoryTitle}
+							category={article.category?.name}
 							imageId={article.images[0]?.id}
 						/>
 					)
