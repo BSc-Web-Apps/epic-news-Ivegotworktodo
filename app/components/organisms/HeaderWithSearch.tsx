@@ -3,7 +3,12 @@ import NavLogo from '../molecules/NavLogo'
 import { SearchBar } from '../molecules/SearchBar'
 import LoginOrUserDropdown from './LoginOrUserDropdown'
 
-export default function HeaderWithSearch() {
+interface HeaderWithSearchProps {
+	isAdminUser: boolean
+}
+export default function HeaderWithSearch({
+	isAdminUser,
+}: HeaderWithSearchProps) {
 	const matches = useMatches()
 	const isOnSearchPage = matches.find(m => m.id === 'routes/users+/index')
 	const searchBar = isOnSearchPage ? null : <SearchBar status="idle" />
@@ -36,6 +41,14 @@ export default function HeaderWithSearch() {
 					>
 						Contact Us
 					</Link>
+					{isAdminUser && (
+						<Link
+							to="/admin-review"
+							className="rounded-lg bg-green-500 px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-green-400"
+						>
+							Admin Review
+						</Link>
+					)}
 				</div>
 				<div className="ml-auto hidden max-w-sm flex-1 sm:block">
 					{searchBar}
