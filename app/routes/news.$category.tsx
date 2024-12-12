@@ -16,6 +16,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 			category: {
 				slug: category,
 			},
+			isPublished: true,
 		},
 		select: {
 			id: true,
