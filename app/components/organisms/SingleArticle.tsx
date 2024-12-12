@@ -31,7 +31,7 @@ export default function SingleArticle({ article }: SingleArticleProps) {
 	const imageSrc = article.images.length
 		? getArticleImgSrc(mainImage.id)
 		: siteLogo
-	const categoryTitle = toTitleCase(article.category?.name || '')
+	const categoryTitle = toTitleCase(article.category?.name || 'General News')
 
 	const categoryIcons: { [key: string]: JSX.Element } = {
 		Business: <MdOutlineBusinessCenter size={50} className="text-red-600" />,

@@ -35,7 +35,7 @@ export default function App() {
 						<div className="container flex justify-between pb-5">
 							<ThemeSwitch userPreference={data.requestInfo.userPrefs.theme} />
 						</div>
-						<div className="flex-1">
+						{/* <div className="flex-1">
 							<main className="container grid h-full place-items-center">
 								<h1 className="px-60 text-center text-mega text-red-400">
 									Welcome!
@@ -45,7 +45,7 @@ export default function App() {
 									Goodbye!
 								</button>
 							</main>
-						</div>
+						</div> */}
 						<FooterMenuRight
 							companyName="Jersey Morning News"
 							altText="Jersey Morning News Logo"
